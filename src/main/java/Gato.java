@@ -10,7 +10,9 @@ public class Gato {
     public static int turno = 1;
     // Variable para controlar si el juego ha terminado
     public static boolean juegoTerminado = false;
-
+    public static boolean Xwin = false;
+    public static boolean Owin = false;
+    
     public static void main(String[] args) {
         // Definición del frame
         JFrame frame = new JFrame("Gato");
@@ -38,6 +40,9 @@ public class Gato {
         // Etiqueta para mostrar el resultado del juego (quién ha ganado)
         JLabel resultadoLabel = new JLabel("");
         resultadoLabel.setBounds(230, 80, 200, 25);
+
+        JLabel empateLabel = new JLabel("");
+        empateLabel.setBounds(270, 80, 200, 25);
 
         // Botón para volver a jugar
         JButton play = new JButton("Volver a Jugar");
@@ -75,6 +80,7 @@ public class Gato {
         panel.add(etiqueta);
         panel.add(etiqueta2);
         panel.add(resultadoLabel); // Añade la etiqueta para mostrar el resultado
+        panel.add(empateLabel);
         panel.add(play);
         panel.add(boton1);
         panel.add(boton2);
@@ -116,6 +122,10 @@ public class Gato {
                             resultadoLabel.setText("¡Jugador 2 (X) ha ganado!");
                         }
                         etiqueta2.setText("¡Juego terminado!"); // Indica que el juego ha terminado
+                    } else if (turno == 10 && !Xwin && !Owin ) {
+                        empateLabel.setText("¡EMPATE!");
+                        juegoTerminado = true;
+                        etiqueta2.setText("¡Juego terminado!"); // Indica que el juego ha terminado
                     }
                 }
             }
@@ -139,6 +149,9 @@ public class Gato {
                 juegoTerminado = false; // Reinicia el estado del juego
                 etiqueta2.setText("Turno 1, juega el jugador 1 ( O )."); // Asegura que el primer jugador sea O
                 resultadoLabel.setText(""); // Limpia el mensaje de resultado
+                empateLabel.setText(""); // Limpia el mensaje de resultado
+                Xwin=false;
+                Owin=false;
             }
         };
 
